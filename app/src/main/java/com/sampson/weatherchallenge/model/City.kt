@@ -3,7 +3,7 @@ package com.sampson.weatherchallenge.model
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
-data class Country(
+data class City(
     @SerializedName("id") val id: String,
     @SerializedName("name") val name: String,
     @SerializedName("main") val mainWeather: String,

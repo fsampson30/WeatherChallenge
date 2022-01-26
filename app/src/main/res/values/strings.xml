@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">WeatherChallenge</string>
-    <string name="country_name">CountryName</string>
-    <string name="country_title">Title</string>
+    <string name="city_name">CountryName</string>
+    <string name="city_title">Title</string>
     <string name="details">Details</string>
-    <string name="country_max">Max Temp</string>
-    <string name="country_min">Min Temp</string>
+    <string name="city_max">Max Temp</string>
+    <string name="city_min">Min Temp</string>
 </resources>

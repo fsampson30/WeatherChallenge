@@ -22,10 +22,10 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/txtCountryNameListView"
+                android:id="@+id/txtCityNameListView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/country_name"
+                android:text="@string/city_name"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
 
         </LinearLayout>
