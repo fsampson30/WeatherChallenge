@@ -30,10 +30,12 @@ class CityAdapter(
 
     override fun onBindViewHolder(holder: CityViewHolder, position: Int) {
         holder.txtCityName.text = cityList[position]
+        var cityId = PopulateCityList.getCityId(holder.txtCityName.text.toString())
 
         holder.btnCitYdetails.setOnClickListener {
             val intent = Intent(context, CityDetailsActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            intent.putExtra("cityId", cityId)
             context.startActivity(intent)
 
         }
