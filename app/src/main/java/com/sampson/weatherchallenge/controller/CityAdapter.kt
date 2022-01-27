@@ -19,8 +19,8 @@ class CityAdapter(
     private var cityList = PopulateCityList.populateList()
 
     class CityViewHolder (itemView: View) : RecyclerView.ViewHolder(itemView){
-        val txtCityName: TextView = itemView.findViewById(R.id.txtCityNameListView)
-        val btnCityDetails: Button = itemView.findViewById(R.id.btnDetailListView)
+        val txtCityName: TextView = itemView.findViewById(R.id.txtCurrentLocationMainActivity)
+        val btnCityDetails: Button = itemView.findViewById(R.id.btnCurrentLocationMainActivity)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CityViewHolder {

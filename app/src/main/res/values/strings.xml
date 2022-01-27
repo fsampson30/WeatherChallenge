@@ -9,5 +9,8 @@
     <string name="city_temp">Temperature: </string>
     <string name="temp_signal"> ºc</string>
     <string name="temp_mask">0ºc</string>
+    <string name="city_country">Country: </string>
+    <string name="current_location">Current Location</string>
+    <string name="Brasil">Brasil</string>
 
 </resources>

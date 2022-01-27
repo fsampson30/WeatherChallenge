@@ -1,10 +1,12 @@
 package com.sampson.weatherchallenge
 
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -18,22 +20,31 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val rvCityList = findViewById<RecyclerView>(R.id.rvCityListMainActivity)
-
-        val fusedLocationClient: FusedLocationProviderClient =
-            LocationServices.getFusedLocationProviderClient(this)
-
-        if (checkPermission()) {
-            fusedLocationClient.lastLocation.addOnSuccessListener { location: Location? ->
-                Log.d("Location Latitude", location?.latitude.toString())
-                Log.d("Location Longitude", location?.longitude.toString())
-            }
-
-        }
-
+        val btnCurrentLocation = findViewById<Button>(R.id.btnCurrentLocationMainActivity)
 
         val adapter = CityAdapter(baseContext)
         rvCityList.layoutManager = LinearLayoutManager(baseContext)
         rvCityList.adapter = adapter
+
+        val fusedLocationClient: FusedLocationProviderClient =
+            LocationServices.getFusedLocationProviderClient(this)
+        var latitude = ""
+        var longitude = ""
+
+        if (checkPermission()) {
+            fusedLocationClient.lastLocation.addOnSuccessListener { location: Location? ->
+                latitude = location?.latitude.toString()
+                longitude = location?.longitude.toString()
+            }
+        }
+
+        btnCurrentLocation.setOnClickListener {
+            val intent = Intent(baseContext, CityDetailsActivityByCoordinates::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            intent.putExtra("latitude",latitude )
+            intent.putExtra("longitude", longitude)
+            baseContext.startActivity(intent)
+        }
 
     }
 
@@ -51,5 +62,9 @@ class MainActivity : AppCompatActivity() {
             )
             return false
         }
+    }
+
+    private fun getCurrentLocation(){
+
     }
 }

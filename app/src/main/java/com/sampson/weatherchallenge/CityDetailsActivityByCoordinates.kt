@@ -9,11 +9,11 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import com.google.gson.GsonBuilder
 import com.sampson.weatherchallenge.controller.ApiService
-import com.sampson.weatherchallenge.model.City
 import com.sampson.weatherchallenge.controller.Constants.APIKEY
+import com.sampson.weatherchallenge.controller.Constants.UNITS
 import com.sampson.weatherchallenge.controller.Constants.BASE_URL
 import com.sampson.weatherchallenge.controller.Constants.IMAGE_URL
-import com.sampson.weatherchallenge.controller.Constants.UNITS
+import com.sampson.weatherchallenge.model.City
 import com.sampson.weatherchallenge.model.Country
 import com.squareup.picasso.Picasso
 import retrofit2.Call
@@ -22,26 +22,28 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class CityDetailsActivity : AppCompatActivity() {
-
+class CityDetailsActivityByCoordinates : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.city_item_details)
+        setContentView(R.layout.activity_city_details_by_coordinates)
 
-        val txtCityName = findViewById<TextView>(R.id.txtCityNameDetails)
-        val txtMainWeather = findViewById<TextView>(R.id.txtCityMainWeatherDetails)
-        val txtMainDescription = findViewById<TextView>(R.id.txtCityMainDescriptionDetails)
-        val txtCityTemp = findViewById<TextView>(R.id.txtCityTemperatureDetails)
-        val txtCityFeelsLike = findViewById<TextView>(R.id.txtICityFeelsLikeDetails)
-        val txtCityMinTemp = findViewById<TextView>(R.id.txtCityMinTempDetails)
-        val txtCityMaxTemp = findViewById<TextView>(R.id.txtCityMaxTempDetails)
-        val txtCityCountry = findViewById<TextView>(R.id.txtCityCountryDetails)
-        val imgWeather = findViewById<ImageView>(R.id.imgPictureWeatherDetails)
-        val pbCityDetails = findViewById<ProgressBar>(R.id.pbCityDetails)
+        val txtCityName = findViewById<TextView>(R.id.txtCityNameDetailsCoordinates)
+        val txtMainWeather = findViewById<TextView>(R.id.txtCityMainWeatherDetailsCoordinates)
+        val txtMainDescription = findViewById<TextView>(R.id.txtCityMainDescriptionDetailsCoordinates)
+        val txtCityTemp = findViewById<TextView>(R.id.txtCityTemperatureDetailsCoordinates)
+        val txtCityFeelsLike = findViewById<TextView>(R.id.txtICityFeelsLikeDetailsCoordinates)
+        val txtCityMinTemp = findViewById<TextView>(R.id.txtCityMinTempDetailsCoordinates)
+        val txtCityMaxTemp = findViewById<TextView>(R.id.txtCityMaxTempDetailsCoordinates)
+        val txtCityCountry = findViewById<TextView>(R.id.txtCityCountryDetailsCoordinates)
+        val imgWeather = findViewById<ImageView>(R.id.imgPictureWeatherDetailsCoordinates)
+        val pbCityDetails = findViewById<ProgressBar>(R.id.pbCityDetailsCoordinates)
 
         pbCityDetails.visibility = View.GONE
-        val cityId = intent.getSerializableExtra("cityId") as String
 
+        val latitude = intent.getSerializableExtra("latitude") as String
+        val longitude = intent.getSerializableExtra("longitude") as String
+        Log.d("TAG",latitude)
+        Log.d("TAG",longitude)
 
         val gson = GsonBuilder().create()
         val retrofit = Retrofit.Builder()
@@ -50,7 +52,7 @@ class CityDetailsActivity : AppCompatActivity() {
             .build()
         val apiService = retrofit.create(ApiService::class.java)
         pbCityDetails.visibility = View.VISIBLE
-        apiService.getCityWeatherById(cityId, UNITS, APIKEY)
+        apiService.getCityWeatherByCoordinates(latitude,longitude, UNITS, APIKEY)
             .enqueue(object : Callback<City> {
                 override fun onResponse(
                     call: Call<City>,
@@ -60,6 +62,7 @@ class CityDetailsActivity : AppCompatActivity() {
                     val cityWeather = response.body()
                     if (cityWeather == null) {
                         Log.w("TAG", "Did not receive a valid response body")
+                        pbCityDetails.visibility = View.GONE
                         return
                     }
                     if (response.body() != null) {
