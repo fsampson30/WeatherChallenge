@@ -5,6 +5,7 @@ class PopulateCityList {
     companion object {
         var cityList = mutableListOf<String>()
         fun populateList(): List<String> {
+            cityList.clear()
             cityList.add("Lisboa")
             cityList.add("Madrid")
             cityList.add("Paris")
