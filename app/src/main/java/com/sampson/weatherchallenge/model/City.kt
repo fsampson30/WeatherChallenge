@@ -13,6 +13,7 @@ data class City(
 data class Weather(
     @SerializedName("main") val mainWeather: String,
     @SerializedName("description") val description: String,
+    @SerializedName("icon") val icon: String,
 ) : Serializable
 
 data class Main(

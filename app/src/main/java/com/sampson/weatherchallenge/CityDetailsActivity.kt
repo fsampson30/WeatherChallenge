@@ -4,10 +4,15 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import com.google.gson.GsonBuilder
 import com.sampson.weatherchallenge.model.City
+import com.sampson.weatherchallenge.model.Constants.APIKEY
+import com.sampson.weatherchallenge.model.Constants.BASE_URL
+import com.sampson.weatherchallenge.model.Constants.IMAGE_URL
+import com.squareup.picasso.Picasso
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -31,16 +36,18 @@ class CityDetailsActivity : AppCompatActivity() {
         val txtCityMinTemp = findViewById<TextView>(R.id.txtCityMinTempDetails)
         val txtCityMaxTemp = findViewById<TextView>(R.id.txtCityMaxTempDetails)
 
+        val imgWeather = findViewById<ImageView>(R.id.imgPictureWeatherDetails)
+
         val cityId = intent.getSerializableExtra("cityId") as String
 
         val gson = GsonBuilder().create()
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://api.openweathermap.org/")
+            .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
         val apiService = retrofit.create(ApiService::class.java)
         pbCityDetails.visibility = View.VISIBLE
-        apiService.getCityWeather(cityId, "metric", "141c2d43756d5d338b8ecf71bd892e02")
+        apiService.getCityWeather(cityId, "metric", APIKEY)
             .enqueue(object : Callback<City> {
                 override fun onResponse(
                     call: Call<City>,
@@ -52,10 +59,14 @@ class CityDetailsActivity : AppCompatActivity() {
                         txtCityName.text = cityWeather.name
                         txtMainWeather.text = cityWeather.weather[0].mainWeather
                         txtMainDescription.text = cityWeather.weather[0].description
-                        txtCityTemp.text = cityWeather.main.temp
-                        txtCityFeelsLike.text = cityWeather.main.feels_like
-                        txtCityMinTemp.text = cityWeather.main.temp_min
-                        txtCityMaxTemp.text = cityWeather.main.temp_max
+                        val icon = cityWeather.weather[0].icon + "@2x.png"
+                        (getString(R.string.city_temp) +  cityWeather.main.temp + getString(R.string.temp_signal)).also { txtCityTemp.text = it }
+                        (getString(R.string.feels_like) +  cityWeather.main.feels_like + getString(R.string.temp_signal)).also { txtCityFeelsLike.text = it }
+                        (getString(R.string.city_min) + cityWeather.main.temp_min + getString(R.string.temp_signal)).also { txtCityMinTemp.text = it }
+                        (getString(R.string.city_max) + cityWeather.main.temp_max + getString(R.string.temp_signal)).also { txtCityMaxTemp.text = it }
+
+                        Picasso.get().load(IMAGE_URL+icon).into(imgWeather)
+
                         pbCityDetails.visibility = View.GONE
                     }
                     if (cityWeather == null) {

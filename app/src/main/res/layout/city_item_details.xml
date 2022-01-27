@@ -46,8 +46,8 @@
                     android:id="@+id/txtCityNameDetails"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/city_name"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    tools:text="@string/city_name"/>
 
             </LinearLayout>
 
@@ -56,7 +56,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="@string/city_max"
+                tools:text="@string/city_max"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
 
             <TextView
@@ -64,7 +64,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="@string/city_min"
+                tools:text="@string/city_min"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
 
             <TextView
@@ -72,32 +72,32 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="TextView"
-                tools:text="5521999779988" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                tools:text="@string/temp_mask" />
 
             <TextView
                 android:id="@+id/txtICityFeelsLikeDetails"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="TextView"
-                tools:text="Id: 2" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                tools:text="@string/temp_mask" />
 
             <TextView
                 android:id="@+id/txtCityMinTempDetails"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="TextView"
-                tools:text="Code: ..." />
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                tools:text="@string/temp_mask" />
 
             <TextView
                 android:id="@+id/txtCityMaxTempDetails"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="TextView"
-                tools:text="Code: ..." />
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                tools:text="@string/temp_mask" />
 
         </LinearLayout>
 

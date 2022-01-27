@@ -3,6 +3,11 @@
     <string name="city_name">CountryName</string>
     <string name="city_title">Title</string>
     <string name="details">Details</string>
-    <string name="city_max">Max Temp</string>
-    <string name="city_min">Min Temp</string>
+    <string name="city_max">Max Temp: </string>
+    <string name="city_min">Min Temp: </string>
+    <string name="feels_like">Feels Like: </string>
+    <string name="city_temp">Temperature: </string>
+    <string name="temp_signal"> º</string>
+    <string name="temp_mask">0º</string>
+
 </resources>
