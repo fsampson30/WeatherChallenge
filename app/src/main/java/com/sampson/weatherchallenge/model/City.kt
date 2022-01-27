@@ -7,7 +7,8 @@ data class City(
     @SerializedName("id") val id: String,
     @SerializedName("name") val name: String,
     @SerializedName("weather") val weather: ArrayList<Weather>,
-    @SerializedName("main") val main: Main
+    @SerializedName("main") val main: Main,
+    @SerializedName("sys") val sys: Sys
 ) : Serializable
 
 data class Weather(
@@ -21,4 +22,9 @@ data class Main(
     @SerializedName("feels_like") val feels_like: String,
     @SerializedName("temp_min") val temp_min: String,
     @SerializedName("temp_max") val temp_max: String
+)
+
+data class Sys(
+    @SerializedName("sunrise") val sunrise: Int,
+    @SerializedName("sunset") val sunset: Int
 )
