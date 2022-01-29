@@ -1,4 +1,4 @@
-package com.sampson.weatherchallenge
+package com.sampson.weatherchallenge.view
 
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
+import com.sampson.weatherchallenge.R
 import com.sampson.weatherchallenge.controller.CityAdapter
 
 class MainActivity : AppCompatActivity() {
@@ -35,6 +36,8 @@ class MainActivity : AppCompatActivity() {
             fusedLocationClient.lastLocation.addOnSuccessListener { location: Location? ->
                 latitude = location?.latitude.toString()
                 longitude = location?.longitude.toString()
+            }.addOnCompleteListener {
+                Log.d("TAG", latitude)
             }
         }
 
@@ -49,8 +52,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun checkPermission(): Boolean {
-        if (checkSelfPermission(android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            return true
+        return if ((checkSelfPermission(android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) &&
+                (checkSelfPermission(android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) ){
+            true
         } else {
             ActivityCompat.requestPermissions(
                 this,
@@ -60,11 +64,7 @@ class MainActivity : AppCompatActivity() {
                 ),
                 1
             )
-            return false
+            false
         }
-    }
-
-    private fun getCurrentLocation(){
-
     }
 }

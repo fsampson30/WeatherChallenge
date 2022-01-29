@@ -1,4 +1,4 @@
-package com.sampson.weatherchallenge
+package com.sampson.weatherchallenge.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import com.google.gson.GsonBuilder
+import com.sampson.weatherchallenge.R
 import com.sampson.weatherchallenge.controller.ApiService
 import com.sampson.weatherchallenge.model.City
 import com.sampson.weatherchallenge.controller.Constants.APIKEY

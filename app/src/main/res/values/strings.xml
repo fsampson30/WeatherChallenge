@@ -12,5 +12,6 @@
     <string name="city_country">Country: </string>
     <string name="current_location">Current Location</string>
     <string name="Brasil">Brasil</string>
+    <string name="error_api">Sorry, couldn\'t get city from location</string>
 
 </resources>

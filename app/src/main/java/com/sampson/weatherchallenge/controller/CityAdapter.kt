@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.sampson.weatherchallenge.CityDetailsActivity
+import com.sampson.weatherchallenge.view.CityDetailsActivity
 import com.sampson.weatherchallenge.R
 import com.sampson.weatherchallenge.model.PopulateCityList
 

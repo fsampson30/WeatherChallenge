@@ -13,9 +13,9 @@
         android:roundIcon="@mipmap/ic_app_icon_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.WeatherChallenge">
-        <activity android:name=".CityDetailsActivityByCoordinates" />
-        <activity android:name=".CityDetailsActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".view.CityDetailsActivityByCoordinates" />
+        <activity android:name=".view.CityDetailsActivity" />
+        <activity android:name=".view.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,7 +24,7 @@
         </activity>
 
         <service
-            android:name=".CityDetailsActivity"
+            android:name=".view.CityDetailsActivity"
             android:foregroundServiceType="location" />
     </application>
 
