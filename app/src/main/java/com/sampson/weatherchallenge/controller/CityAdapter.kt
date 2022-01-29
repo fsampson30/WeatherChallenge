@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.sampson.weatherchallenge.DAO.EntityCity
 import com.sampson.weatherchallenge.view.CityDetailsActivity
 import com.sampson.weatherchallenge.R
 import com.sampson.weatherchallenge.model.PopulateCityList
@@ -16,7 +17,7 @@ class CityAdapter(
     private val context: Context
 ) : RecyclerView.Adapter<CityAdapter.CityViewHolder>() {
 
-    private var cityList = PopulateCityList.populateList()
+    private var cityList = mutableListOf<EntityCity>()
 
     class CityViewHolder (itemView: View) : RecyclerView.ViewHolder(itemView){
         val txtCityName: TextView = itemView.findViewById(R.id.txtCurrentLocationMainActivity)
@@ -29,7 +30,7 @@ class CityAdapter(
     }
 
     override fun onBindViewHolder(holder: CityViewHolder, position: Int) {
-        holder.txtCityName.text = cityList[position]
+        holder.txtCityName.text = cityList[position].cityName
         val cityId = PopulateCityList.getCityId(holder.txtCityName.text.toString())
 
         holder.btnCityDetails.setOnClickListener {
@@ -42,4 +43,13 @@ class CityAdapter(
     }
 
     override fun getItemCount() = cityList.size
+
+    fun submitList(cities: MutableList<EntityCity>) {
+        this.cityList = cities
+        notifyDataSetChanged()
+    }
+
+    fun getCityAtPosition(position: Int): EntityCity{
+        return cityList[position]
+    }
 }

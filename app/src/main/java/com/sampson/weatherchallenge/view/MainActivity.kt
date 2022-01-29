@@ -7,15 +7,24 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import androidx.activity.viewModels
 import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
+import com.sampson.weatherchallenge.DAO.CitiesApplication
 import com.sampson.weatherchallenge.R
 import com.sampson.weatherchallenge.controller.CityAdapter
+import com.sampson.weatherchallenge.viewModel.CitiViewModelFactory
+import com.sampson.weatherchallenge.viewModel.CityViewModel
 
 class MainActivity : AppCompatActivity() {
+
+    private val cityViewModel: CityViewModel by viewModels {
+        CitiViewModelFactory((application as CitiesApplication).repository)
+
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -26,6 +35,10 @@ class MainActivity : AppCompatActivity() {
         val adapter = CityAdapter(baseContext)
         rvCityList.layoutManager = LinearLayoutManager(baseContext)
         rvCityList.adapter = adapter
+
+        cityViewModel.allCities.observe(this) { cities ->
+            cities.let { adapter.submitList(it) }
+        }
 
         val fusedLocationClient: FusedLocationProviderClient =
             LocationServices.getFusedLocationProviderClient(this)
