@@ -42,6 +42,7 @@ class MainActivity : AppCompatActivity() {
 
         val fusedLocationClient: FusedLocationProviderClient =
             LocationServices.getFusedLocationProviderClient(this)
+
         var latitude = ""
         var longitude = ""
 
