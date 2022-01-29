@@ -31,7 +31,7 @@ class CountryTestParameterized(
     private val country = Country
     @Test
     fun defaultCountry(){
-        val result = Country.getCountryName(input)
+        val result = country.getCountryName(input)
         Assert.assertEquals(result,expected)
     }
 }
