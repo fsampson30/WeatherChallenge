@@ -22,8 +22,8 @@
 
         <ImageView
             android:id="@+id/imgPictureWeatherDetails"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="8dp"
             android:src="@mipmap/ic_launcher" />
@@ -110,6 +110,21 @@
 
 
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/txtCityHistoricTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="8dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:text="Previous Consults:" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvCityDetailsPartials"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
     </LinearLayout>
 

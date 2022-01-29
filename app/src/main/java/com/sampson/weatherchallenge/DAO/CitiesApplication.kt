@@ -4,7 +4,7 @@ import android.app.Application
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 
-class CitiesApplication : Application(){
+class CitiesApplication() : Application(){
 
     val applicationScope = CoroutineScope(SupervisorJob())
 

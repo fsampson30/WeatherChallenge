@@ -7,7 +7,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-@Database(entities = arrayOf(EntityCity::class), version = 1, exportSchema = false)
+@Database(entities = arrayOf(EntityCity::class,EntityCityPartials::class), version = 1, exportSchema = false)
 abstract class CityRoomDatabase: RoomDatabase() {
 
     abstract fun CityDao() : CityDao

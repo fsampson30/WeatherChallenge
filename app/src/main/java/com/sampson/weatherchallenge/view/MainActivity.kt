@@ -23,8 +23,8 @@ class MainActivity : AppCompatActivity() {
 
     private val cityViewModel: CityViewModel by viewModels {
         CitiViewModelFactory((application as CitiesApplication).repository)
-
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
