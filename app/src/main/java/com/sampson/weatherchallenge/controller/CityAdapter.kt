@@ -31,7 +31,7 @@ class CityAdapter(
 
     override fun onBindViewHolder(holder: CityViewHolder, position: Int) {
         holder.txtCityName.text = cityList[position].cityName
-        val cityId = PopulateCityList.getCityId(holder.txtCityName.text.toString())
+        val cityId = cityList[position].cityCode
 
         holder.btnCityDetails.setOnClickListener {
             val intent = Intent(context, CityDetailsActivity::class.java)

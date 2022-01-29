@@ -16,7 +16,4 @@ interface CityDao {
 
     @Query("DELETE FROM city_table")
     suspend fun deleteAll()
-
-    @Query("SELECT cityCode FROM city_table")
-    fun getCityCode() : String
 }
