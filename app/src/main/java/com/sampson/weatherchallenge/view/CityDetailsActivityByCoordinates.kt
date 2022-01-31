@@ -47,8 +47,6 @@ class CityDetailsActivityByCoordinates : AppCompatActivity() {
 
         val latitude = intent.getSerializableExtra("latitude") as String
         val longitude = intent.getSerializableExtra("longitude") as String
-        Log.d("TAG",latitude)
-        Log.d("TAG",longitude)
 
         val gson = GsonBuilder().create()
         val retrofit = Retrofit.Builder()
